@@ -1,5 +1,3 @@
-package acousticChat;
-
 public class Rule {
 	private String before, after;
 	private int weighting;

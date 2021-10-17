@@ -1,5 +1,3 @@
-package acousticChat;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.Logger;

@@ -24,7 +24,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 	https://github.com/cs-au-dk/dk.brics.automaton
 	https://github.com/mifmif/Generex
 */
-import com.mifmif.common.regex.Generex;
+import external.mifmif.*;
 
 public class AcousticChat extends JavaPlugin implements Listener {
 	public static Random r;

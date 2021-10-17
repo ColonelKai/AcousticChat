@@ -1,0 +1,82 @@
+#maximum distance at which a player can be heard, this can be exceeded if entropyRandomFlucuation is not 0
+maxDistance: 50
+
+#between 0 and 1, set to 0 if you want to always lose the same amount of information from the same position
+entropyRandomFlucuation: 0.05
+
+#http://hyperphysics.phy-astr.gsu.edu/hbase/Acoustic/invsqs.html, becomes linear with distance if false
+obeyInverseSquareLaw: true
+
+opsAlwaysHeard: true
+opsHearEverything: true
+
+#When nobody hears their message should the player be alerted?
+messageWhenNoListeners:
+  enabled: false
+  cooldown: 5 #integer number of seconds, setting this to zero may slightly increase server performance
+  notifyIfOpHears: false #Set to true if the message should be sent in the case where only ops hear them
+  message: "Nobody heard you..."
+
+#When a player is too far, their username will be unknown but their message may be heard
+hideSender:
+  enabled: true
+  minEntropy: 0.85 #between 0 and 1, when this is exceeded, username is hidden
+  senderName: "?" #e.g (<?> message) instead of (<username> message)
+
+#If the receiver is not in line of sight with sender, should the entropy be increased?
+lineOfSight: 
+  enabled: true
+  weighting: 0.2 #Between 0 and 1. Having weighting equal to 0 is the same as disabiling this feature but performancewise it's better to just disable it
+
+#If the sender is not facing the receiver, should the entropy be increased? This is proportional to the angle difference
+senderFacing: 
+  enabled: true
+  weighting: 0.15 #between 0 and 1
+
+#Configure a set of rules that define how entropy affects a message
+
+#Rule parameters:
+# enabled: true or false, default is true
+# match: This is the regex that defines what to look for in the message, default is '.'
+# before: This is the regex from which a random string is selected and placed behind matches, default '.'
+# after: Like above but in front of the match
+# weighting: an integer that tells how much a rule should have an effect, if its negative such as -1 then it will have an effect on every match. It has no range since its a % from the sum of all weights
+# remove: true or false, the matched substring in message will be removed if true
+
+#https://www.jrebel.com/blog/java-regular-expressions-cheat-sheet
+#Only use single quotes
+#The rules are executed sequentially on the message, you can add other rules with any name
+noiseEffects:
+  spaces: #Remove spaces
+    enabled: true
+    match: ' '
+    remove: true
+    weighting: 5
+  letters: #Remove letters and numbers
+    enabled: true
+    match: '[a-zA-Z0-9]' # These will be looked for within the message
+    remove: true
+    weighting: 15
+  unheardSymbols: #Replace characters with * and ?
+    enabled: true
+    match: '.' #This is '.' and not '' because removing '' does not have an effect
+    before: '[\*\?]' #The strings defined here are "?" and "*"
+    remove: true 
+    weighting: 70 #Can be any whole number, it is relative to the weighting of other enabled rules
+  addVowels: #Adds a random vowel behind vowels
+    enabled: true
+    match: '[aeiou]'
+    before: '[aeiou]'
+    weighting: 10
+  fadeLetter: #Colors individual letters
+    enabled: false
+    match: '.' 
+    before: '(&0)|(&7)|(&8)'
+    after: '&r'
+    weighting: 100 #If this is -1, then the rule will be executed for every match
+  fadeWord: #Colors words
+    enabled: false
+    match: '(^| )[^ ]+' #(The start of a string or a space) followed by anything of any length that has a space aferwards
+    before: '(&0)|(&7)|(&8)'
+    after: '&r'
+    weighting: 100

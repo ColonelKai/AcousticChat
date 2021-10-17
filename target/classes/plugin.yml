@@ -1,0 +1,9 @@
+name: AcousticChat
+main: AcousticChat
+version: 2.0
+api-version: 1.13
+commands:
+  ac:
+    description: AcousticChat commands
+    usage: /ac reload or /ac noise <number between 0 and 1> <text>
+    

@@ -2,9 +2,7 @@ Fork of AcousticChat for IronForge Server.
 
 Changes from AcousticChat:
 - Maven Support - DONE
-- Global Chat Support
-- Refactored Code
-- Hopefully DiscordSRV Support
+- VentureChat Support - DONE
 
 Credits to
 

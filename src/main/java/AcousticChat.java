@@ -1,8 +1,7 @@
+import io.papermc.paper.event.player.AsyncChatEvent;
 import mineverse.Aust1n46.chat.MineverseChat;
 import mineverse.Aust1n46.chat.api.MineverseChatAPI;
-import mineverse.Aust1n46.chat.api.MineverseChatPlayer;
-import mineverse.Aust1n46.chat.command.chat.Venturechat;
-import org.bukkit.Bukkit;
+import mineverse.Aust1n46.chat.api.MineverseChatPlayer;import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,7 +31,14 @@ public class AcousticChat extends JavaPlugin implements Listener {
 	MineverseChat ventureChat;
 
 	private static Logger log = null;
-	
+
+	public static void printDebug(String debug){
+		if(config.getBoolean("debug")) {
+			log.info("DEBUG: "+debug);
+		}
+	}
+
+
 	@Override
 	public void onEnable() {
 		this.ventureChat
@@ -71,27 +77,32 @@ public class AcousticChat extends JavaPlugin implements Listener {
 		String VChatChannel = getConfig().getString("ventureChatChannel");
 		if(MChatplayer.getCurrentChannel().getName().equalsIgnoreCase(VChatChannel)) {
 			event.setCancelled(true);
+			printDebug("Message Sent in Roleplay Channel.");
 		} else {
 			return;
 		}
 
 		//region Variable Setting Area
+		String prefix = getConfig().getString("roleplayChatPrefix");
 		Player sender = event.getPlayer();
 		String mformat = event.getFormat();
 		String senderName = sender.getDisplayName();
 		String messageText = event.getMessage();
 		
 		String message = applyFormat(mformat, senderName, messageText);
-		
-		getServer().getConsoleSender().sendMessage(message);
-		sender.sendMessage(message);
+
+		printDebug("Sender: "+senderName);
+		printDebug("MessageText: "+messageText);
+
+		getServer().getConsoleSender().sendMessage(prefix + message);
+		sender.sendMessage(prefix + message);
 		//TODO: colour this in a way to indicate who heard it
 		
 		@SuppressWarnings("unchecked")
 		List<Player> players = (List<Player>) Bukkit.getOnlinePlayers();
 
 		//endregion
-
+		printDebug("Starting Player Loops.");
 		boolean sentOne = false;
 		for (Player p : players) {
 			//message already sent to themselves
@@ -116,7 +127,8 @@ public class AcousticChat extends JavaPlugin implements Listener {
 			if (entropy > 1.0) continue;
 			if (getConfig().getBoolean("hideSender.enabled") && getConfig().getDouble("hideSender.minEntropy") < entropy)
 				senderName = Math.fixColor(getConfig().getString("hideSender.senderName"));
-			p.sendMessage(applyFormat(mformat, senderName, Math.addNoise(messageText, entropy)));
+			printDebug("Message Sent to player: "+p.getDisplayName());
+			p.sendMessage(applyFormat(mformat, prefix + senderName, Math.addNoise(messageText, entropy)));
 			sentOne = true;
 		}
 
@@ -134,6 +146,5 @@ public class AcousticChat extends JavaPlugin implements Listener {
 		if (cooltime == 0) return;
 		cooldown.put(sender, System.currentTimeMillis());
 	}
-
 
 }

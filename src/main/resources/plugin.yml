@@ -1,7 +1,9 @@
-name: AcousticChat
+name: AcousticChat-IronForge
 main: AcousticChat
 version: 2.0
-api-version: 1.13
+api-version: 1.17
+loadbefore:
+  - VentureChat
 commands:
   ac:
     description: AcousticChat commands

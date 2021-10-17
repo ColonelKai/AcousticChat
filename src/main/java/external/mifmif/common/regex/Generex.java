@@ -30,13 +30,13 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.mifmif.common.regex.util.Iterable;
-import com.mifmif.common.regex.util.Iterator;
+import external.mifmif.common.regex.util.Iterable;
+import external.mifmif.common.regex.util.Iterator;
 
-import dk.brics.automaton.Automaton;
-import dk.brics.automaton.RegExp;
-import dk.brics.automaton.State;
-import dk.brics.automaton.Transition;
+import external.dk.brics.automaton.Automaton;
+import external.dk.brics.automaton.RegExp;
+import external.dk.brics.automaton.State;
+import external.dk.brics.automaton.Transition;
 
 /**
  * A Java utility class that help generating string values that match a given regular expression.It generate all values

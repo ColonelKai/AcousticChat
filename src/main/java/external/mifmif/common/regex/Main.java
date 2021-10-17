@@ -19,7 +19,7 @@ package external.mifmif.common.regex;
 
 //import java.util.List;
 
-import com.mifmif.common.regex.util.Iterator;
+import external.mifmif.common.regex.util.Iterator;
 
 /**
  * @author y.mifrah

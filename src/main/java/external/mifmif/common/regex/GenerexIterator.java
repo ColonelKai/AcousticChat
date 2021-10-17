@@ -1,6 +1,6 @@
 package external.mifmif.common.regex;
 
-*
+/*
  * Copyright 2014 y.mifrah
  *
 
@@ -17,15 +17,14 @@ package external.mifmif.common.regex;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mifmif.common.regex;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import com.mifmif.common.regex.util.Iterator;
 
-import dk.brics.automaton.State;
-import dk.brics.automaton.Transition;
+import external.dk.brics.automaton.State;
+import external.dk.brics.automaton.Transition;
+import external.mifmif.common.regex.util.Iterator;
 
 /**
  * An implementation of {@code Iterator} class that iterate over the list of Strings that matches a given Regex.

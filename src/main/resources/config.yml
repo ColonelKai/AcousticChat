@@ -1,3 +1,7 @@
+# IRONFORGE FORK OPTIONS HERE
+#venturechat channel that this plugin will effect.
+ventureChatChannel: roleplay
+
 #maximum distance at which a player can be heard, this can be exceeded if entropyRandomFlucuation is not 0
 maxDistance: 50
 

@@ -285,13 +285,13 @@ final public class StringUnionOperations {
 	/**
 	 * Internal recursive traversal for conversion.
 	 */
-	private static dk.brics.automaton.State convert(State s, 
-			IdentityHashMap<State, dk.brics.automaton.State> visited) {
-		dk.brics.automaton.State converted = visited.get(s);
+	private static external.dk.brics.automaton.State convert(State s,
+			IdentityHashMap<State, external.dk.brics.automaton.State> visited) {
+		external.dk.brics.automaton.State converted = visited.get(s);
 		if (converted != null)
 			return converted;
 
-		converted = new dk.brics.automaton.State();
+		converted = new external.dk.brics.automaton.State();
 		converted.setAccept(s.is_final);
 
 		visited.put(s, converted);
@@ -307,13 +307,13 @@ final public class StringUnionOperations {
 	/**
 	 * Build a minimal, deterministic automaton from a sorted list of strings.
 	 */
-	public static dk.brics.automaton.State build(CharSequence[] input) {
+	public static external.dk.brics.automaton.State build(CharSequence[] input) {
 		final StringUnionOperations builder = new StringUnionOperations(); 
 
 		for (CharSequence chs : input)
 			builder.add(chs);
 
-		return convert(builder.complete(), new IdentityHashMap<State, dk.brics.automaton.State>());
+		return convert(builder.complete(), new IdentityHashMap<State, external.dk.brics.automaton.State>());
 	}
 
 	/**

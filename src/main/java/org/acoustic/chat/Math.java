@@ -1,4 +1,6 @@
-import external.mifmif.common.regex.Generex;
+package org.acoustic.chat;
+
+import com.mifmif.common.regex.Generex;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,15 +14,15 @@ import java.util.regex.Pattern;
 
 public class Math {
 
-    static String fixColor(String text) {
+    public static String fixColor(String text) {
         return ChatColor.translateAlternateColorCodes('&', text);
     }
 
-    static double calcEntropy(Player sender, Player receiver, FileConfiguration config) {
+    public static double calcEntropy(Player sender, Player receiver, FileConfiguration config) {
         double distance = sender.getLocation().distance(receiver.getLocation());
         double percent = distance / config.getInt("maxDistance");
         double fluctuation = config.getDouble("entropyRandomFluctuation");
-        double entropy = percent + (fluctuation*2* AcousticChat.r.nextDouble() - fluctuation);
+        double entropy = percent + (fluctuation * 2 * AcousticChat.r.nextDouble() - fluctuation);
         entropy = java.lang.Math.min(java.lang.Math.max(0, entropy), 1.0); //to make sure it's still in range
         entropy = AcousticChat.config.getBoolean("obeyInverseSquareLaw") ? java.lang.Math.pow(entropy, 2):entropy;
 
@@ -53,14 +55,14 @@ public class Math {
 
         ArrayList<Rule> rules = new ArrayList<Rule>();
         for (String ruleKey : ruleKeys) {
-            if (effects.contains(ruleKey+".enabled") && !effects.getBoolean(ruleKey+".enabled"))
+            if (effects.contains(ruleKey + ".enabled") && !effects.getBoolean(ruleKey + ".enabled"))
                 continue;
             rules.add(new Rule(
-                            effects.contains(ruleKey+".weighting", false) ? effects.getInt(ruleKey+".weighting"):-1,
-                            effects.contains(ruleKey+".match", false) ? effects.getString(ruleKey+".match"):"",
-                            fixColor(effects.contains(ruleKey+".before", false) ? effects.getString(ruleKey+".before"):""),
-                            fixColor(effects.contains(ruleKey+".after", false) ? effects.getString(ruleKey+".after"):""),
-                            effects.contains(ruleKey+".remove", false) ? effects.getBoolean(ruleKey+".remove"):false
+                            effects.contains(ruleKey + ".weighting", false) ? effects.getInt(ruleKey + ".weighting"):-1,
+                            effects.contains(ruleKey + ".match", false) ? effects.getString(ruleKey + ".match"):"",
+                            fixColor(effects.contains(ruleKey + ".before", false) ? effects.getString(ruleKey + ".before"):""),
+                            fixColor(effects.contains(ruleKey + ".after", false) ? effects.getString(ruleKey + ".after"):""),
+                            effects.contains(ruleKey + ".remove", false) ? effects.getBoolean(ruleKey + ".remove"):false
                     )
             );
         }
@@ -77,7 +79,7 @@ public class Math {
             m.reset();
 
             //TODO: don't count num_matches if rule weight <= 0
-            int num_insertions = (rule.getWeight() < 0) ? num_matches:(int) java.lang.Math.round(num_matches * ((double)(rule.getWeight()) / weightSum) * entropy);
+            int num_insertions = (rule.getWeight() < 0) ? num_matches:(int) java.lang.Math.round(num_matches * ((double) (rule.getWeight()) / weightSum) * entropy);
 
             Generex before = new Generex(rule.getBefore());
             Generex after = new Generex(rule.getAfter());

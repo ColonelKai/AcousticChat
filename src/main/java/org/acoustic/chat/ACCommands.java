@@ -1,3 +1,5 @@
+package org.acoustic.chat;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -6,12 +8,12 @@ import org.bukkit.entity.Player;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class AC_commands implements CommandExecutor{
+public class ACCommands implements CommandExecutor{
     
 	private static AcousticChat plugin;
 	
-	public AC_commands(AcousticChat plugin) {
-		AC_commands.plugin = plugin;
+	public ACCommands(AcousticChat plugin) {
+		ACCommands.plugin = plugin;
 	}
 	
 	@Override
@@ -22,7 +24,7 @@ public class AC_commands implements CommandExecutor{
 		}
 		if (args[0].equals("reload")) {
 			plugin.reloadConfig();
-			sender.sendMessage("AcousticChat reloaded");
+			sender.sendMessage("org.acoustic.chat.AcousticChat reloaded");
 			return true;
 		} else if (args[0].equals("noise")) {
 			if (args.length < 3) return false;

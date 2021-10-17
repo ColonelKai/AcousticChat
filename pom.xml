@@ -10,6 +10,11 @@
 
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
+        <repository>
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
@@ -26,11 +31,19 @@
             <groupId>dk.brics</groupId>
             <artifactId>automaton</artifactId>
             <version>1.12-3</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.mifmif</groupId>
             <artifactId>generex</artifactId>
             <version>1.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.rz7d</groupId>
+            <artifactId>venturechat-all</artifactId>
+            <version>master-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

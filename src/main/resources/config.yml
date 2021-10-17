@@ -43,7 +43,7 @@ senderFacing:
 
 #Configure a set of rules that define how entropy affects a message
 
-#Rule parameters:
+#org.acoustic.chat.Rule parameters:
 # enabled: true or false, default is true
 # match: This is the regex that defines what to look for in the message, default is '.'
 # before: This is the regex from which a random string is selected and placed behind matches, default '.'

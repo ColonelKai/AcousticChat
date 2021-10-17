@@ -1,8 +1,13 @@
-See https://www.spigotmc.org/resources/acousticchat.88485/
+Fork of AcousticChat for IronForge Server.
+
+Changes from AcousticChat:
+- Maven Support - DONE
+- Global Chat Support
+- Refactored Code
+- Hopefully DiscordSRV Support
 
 Credits to
 
-https://github.com/cs-au-dk/dk.brics.automaton <br>
-https://github.com/mifmif/Generex
-
-for their useful dependencies
+https://github.com/cs-au-dk/dk.brics.automaton - Dependency <br>
+https://github.com/mifmif/Generex - Dependency<br>
+https://github.com/Cabbache/AcousticChat - Original 

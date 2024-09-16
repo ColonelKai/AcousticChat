@@ -1,11 +1,11 @@
-name: AcousticChat-IronForge
-main: AcousticChat
+name: org.acoustic.chat.AcousticChat-IronForge
+main: org.acoustic.chat.AcousticChat
 version: 2.0
 api-version: 1.17
 loadbefore:
   - VentureChat
 commands:
   ac:
-    description: AcousticChat commands
+    description: org.acoustic.chat.AcousticChat commands
     usage: /ac reload or /ac noise <number between 0 and 1> <text>
     
